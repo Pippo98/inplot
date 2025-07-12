@@ -39,3 +39,13 @@
 
 # debug information files
 *.dwo
+
+# build
+debug/
+release/
+.last_compilation_mode
+compile_commands.json
+
+
+
+
