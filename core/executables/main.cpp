@@ -5,9 +5,6 @@
 
 int main() {
   Figure fig;
-  OpenWindow("inplot");
-
-  sleep(100);
-
+  fig.WaitForEnd();
   return EXIT_SUCCESS;
 }

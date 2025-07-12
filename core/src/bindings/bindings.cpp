@@ -10,5 +10,17 @@ namespace py = pybind11;
 
 PYBIND11_MODULE(pyinplot, m) {
   py::class_<Figure>(m, "Figure")
-      .def(py::init<std::string>());
+    .def("WaitForEnd", &Figure::WaitForEnd)
+    .def("Close", &Figure::Close)
+    .def("AddPlot", &Figure::AddPlot)
+    .def("AddLinePlot", &Figure::AddLinePlot)
+    .def("SetLinePlot", &Figure::SetLinePlot)
+    .def("AddScatterPlot", &Figure::AddScatterPlot)
+    .def("SetScatterPlot", &Figure::SetScatterPlot)
+    .def("AddPlot3", &Figure::AddPlot3)
+    .def("AddLinePlot3", &Figure::AddLinePlot3)
+    .def("SetLinePlot3", &Figure::SetLinePlot3)
+    .def("AddScatterPlot3", &Figure::AddScatterPlot3)
+    .def("SetScatterPlot3", &Figure::SetScatterPlot3)
+    .def(py::init<std::string>());
 }

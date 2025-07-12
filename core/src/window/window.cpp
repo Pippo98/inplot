@@ -60,7 +60,7 @@ bool OpenWindow(const std::string &name) {
   return true;
 }
 
-bool ShouldClose() { return glfwWindowShouldClose(window.window) == 1; }
+bool ShouldClose() { return glfwWindowShouldClose(window.window) != 0; }
 
 void NewFrame() {
   glfwPollEvents();
