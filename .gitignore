@@ -46,6 +46,14 @@ release/
 .last_compilation_mode
 compile_commands.json
 
+# compiled
+bin/
+lib/
+
+# ide/editor
+.vscode/
+.cache/
 
 
 
+.ini
