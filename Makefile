@@ -17,13 +17,11 @@ define setup_folder
 endef
 
 debug:
-	@$(call custom_git_hooks) \
 	$(call setup_folder, debug) \
  	cmake .. -DCMAKE_BUILD_TYPE=Debug; \
 	make -j$(CORES);
 
 release:
-	@$(call custom_git_hooks) \
 	$(call setup_folder, release) \
 	cmake .. -DCMAKE_BUILD_TYPE=Release; \
 	make -j$(CORES);

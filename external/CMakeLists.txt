@@ -3,6 +3,8 @@ set(CDIR ${CMAKE_CURRENT_LIST_DIR})
 
 set(EXTERNAL_DIRS
   ${CDIR}
+  ${CDIR}/pybind11/include/
+  ${CDIR}/eigen
 )
 include_directories(PUBLIC ${EXTERNAL_DIRS})
 
@@ -42,5 +44,11 @@ target_link_libraries(
   GLEW::GLEW
   OpenGL::GL
 )
+target_compile_options(im_all PRIVATE -w)
+
+set(PYBIND11_FINDPYTHON ON)
+add_subdirectory(${CDIR}/pybind11)
+
+add_subdirectory(${CDIR}/eigen)
 
 set(EXTERNAL_DIRS ${EXTERNAL_DIRS} PARENT_SCOPE)
