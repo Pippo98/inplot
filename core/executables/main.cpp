@@ -4,7 +4,9 @@
 #include <iostream>
 
 int main() {
-  Figure fig;
-  fig.WaitForEnd();
+  Start();
+  auto f = figure("fig 1");
+  f->AddPlot("aaa");
+  WaitForEnd();
   return EXIT_SUCCESS;
 }

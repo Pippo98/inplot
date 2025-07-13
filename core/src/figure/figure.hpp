@@ -7,57 +7,34 @@
 #include <vector>
 
 #include <Eigen/Core>
+#include "types.hpp"
 
-using vec = Eigen::VectorXd;
+class Figure;
 
-enum class element_type {
-  line,
-  scatter,
-  bar
-};
+class Manager {
+public:
+  ~Manager();
+  void Start();
+  void Stop();
+  void WaitForEnd();
 
-struct xy_element {
+  Figure *AddFigure(const std::string &name);
+  bool RemoveFigure(Figure *fig);
+private:
   std::string name;
+  std::thread *t = nullptr;
+  bool stopThread = false;
 
-  vec x;
-  vec y;
+  std::vector<Figure *> figures;
 
-  element_type type;
-};
-struct xyz_element {
-  std::string name;
-
-  vec x;
-  vec y;
-  vec z;
-
-  element_type type;
-};
-
-struct plt {
-  std::string name;
-  std::vector<xy_element> axis;
-};
-struct plt3 {
-  std::string name;
-  std::vector<xyz_element> axis;
-};
-
-struct sub {
-  std::string name;
-  std::vector<plt> plots;
-};
-struct sub3 {
-  std::string name;
-  std::vector<plt3> plots;
+  void Run();
 };
 
 class Figure {
 public:
+  ~Figure();
   Figure(const std::string &name="fig");
-  void WaitForEnd();
-  void Close();
-
+  void Draw();
   // 2D
   void AddPlot(const std::string &name);
   int AddLinePlot(const std::string &name, const vec &x, const vec &y);
@@ -70,18 +47,17 @@ public:
   void SetLinePlot3(int id, const vec &x, const vec &y, const vec &z);
   int AddScatterPlot3(const std::string &name, const vec &x, const vec &y, const vec &z);
   void SetScatterPlot3(int id, const vec &x, const vec &y, const vec &z);
-
 private:
   std::string name;
-  std::thread *t;
-  bool stopThread;
-
-  window_t window;
-
   std::vector<sub> subplots;
   std::vector<sub3> subplots3;
   std::vector<plt> plots;
   std::vector<plt3> plots3;
 
-  void Run();
+  friend class Manager;
 };
+
+void Start();
+void Stop();
+void WaitForEnd();
+Figure *figure(const std::string &name);

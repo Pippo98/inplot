@@ -9,9 +9,11 @@
 namespace py = pybind11;
 
 PYBIND11_MODULE(pyinplot, m) {
+  m.def("Start", &Start);
+  m.def("Stop", &Stop);
+  m.def("WaitForEnd", &WaitForEnd);
+  m.def("figure", &figure);
   py::class_<Figure>(m, "Figure")
-    .def("WaitForEnd", &Figure::WaitForEnd)
-    .def("Close", &Figure::Close)
     .def("AddPlot", &Figure::AddPlot)
     .def("AddLinePlot", &Figure::AddLinePlot)
     .def("SetLinePlot", &Figure::SetLinePlot)
